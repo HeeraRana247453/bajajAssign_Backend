@@ -16,7 +16,7 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // POST Method to handle the /bfhl endpoint
-app.post("api/bfhl", (req, res) => {
+app.post("/bfhl", (req, res) => {
   const { data } = req.body;  // Data array sent in the request body
 
   if (!data || !Array.isArray(data)) {
@@ -57,7 +57,7 @@ app.post("api/bfhl", (req, res) => {
 });
 
 // GET Method to handle the /bfhl endpoint
-app.get("api/bfhl", (req, res) => {
+app.get("/bfhl", (req, res) => {
   // Static response for GET request
   res.status(200).json({ operation_code: 1 });
 });
