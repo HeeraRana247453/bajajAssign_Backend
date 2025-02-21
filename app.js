@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 
 // Allow CORS for specific origins (production frontend domain)
 const allowedOrigins = ['https://bajaj-assign-frontend.vercel.app'];
