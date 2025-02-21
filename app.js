@@ -4,12 +4,22 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+
+// Allow CORS for specific origins (production frontend domain)
+const allowedOrigins = ['https://bajaj-assign-frontend.vercel.app'];
 
 app.use(cors({
-    origin: "https://bajaj-assign-frontend.vercel.app/",  // Only allow requests from this URL
- }));
- 
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST'],  // Allow GET and POST methods
+  allowedHeaders: ['Content-Type'],  // Allow specific headers
+}));
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
