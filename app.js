@@ -4,23 +4,32 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-app.use(cors());
 
-// Allow CORS for specific origins (production frontend domain)
-const allowedOrigins = ['https://bajaj-assign-frontend.vercel.app'];
+// // Allow CORS for specific origins (production frontend domain)
+// const allowedOrigins = ['https://bajaj-assign-frontend.vercel.app'];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST'],  // Allow GET and POST methods
-  allowedHeaders: ['Content-Type'],  // Allow specific headers
-}));
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   methods: ['GET', 'POST'],  // Allow GET and POST methods
+//   allowedHeaders: ['Content-Type'],  // Allow specific headers
+// }));
 
+app.use(
+    cors({
+      origin:'https://bajaj-assign-frontend.vercel.app', // Replace with your frontend URL
+      credentials: true, // Allows cookies to be sent with the request
+      methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+      allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+    })
+  );
+
+app.use(express.json({ limit: "10mb" }));
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
