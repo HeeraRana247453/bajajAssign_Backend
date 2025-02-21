@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 
 app.use(cors({
-    origin: "http://localhost:5173",  // Only allow requests from this URL
+    origin: "https://bajaj-assign-frontend.vercel.app/",  // Only allow requests from this URL
  }));
  
 
